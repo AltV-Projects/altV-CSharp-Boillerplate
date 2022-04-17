@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      working-directory: ./altV-Boillerplate
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      working-directory: ./altV-Boillerplate
+      with:
+        dotnet-version: 6.0.x
+    
+    - name: Restore dependencies
+      working-directory: ./altV-Boillerplate
+      run: dotnet restore
+    
+    - name: Build
+      working-directory: ./altV-Boillerplate
+      run: dotnet build -c Release --no-restore
