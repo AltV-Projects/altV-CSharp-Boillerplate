@@ -50,6 +50,6 @@
   </Target>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;  start xcopy &quot;bin/Debug/*.*&quot; &quot;../../server/resources/altV-Boilerplate&quot; /F /Y&#xD;&#xA;  echo type: &quot;csharp&quot;, main: &quot;Server-Core.dll&quot; &gt; &quot;../../server/resources/altV-Boilerplate/resource.cfg&quot;&#xD;&#xA;)" />
+    <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;  xcopy &quot;bin/Debug/*.*&quot; &quot;../../server/resources/altV-Boilerplate&quot; /F /Y&#xD;&#xA;  echo type: &quot;csharp&quot;, main: &quot;Server-Core.dll&quot; &gt; &quot;../../server/resources/altV-Boilerplate/resource.cfg&quot;&#xD;&#xA;)" />
   </Target>
 </Project>
