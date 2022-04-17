@@ -5,9 +5,31 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-ubuntu:
 
     runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    
+    - name: Restore dependencies
+      working-directory: ./altV-Boillerplate
+      run: dotnet restore
+    
+    - name: Build
+      working-directory: ./altV-Boillerplate
+      run: dotnet build -c Release --no-restore
+      
+  build-windows:
+
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
