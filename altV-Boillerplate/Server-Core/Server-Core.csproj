@@ -49,7 +49,7 @@
     <Copy Condition=" '$(TargetLocation)' != '' " SourceFiles="@(AllOutputFiles)" DestinationFolder="$(TargetLocation)" SkipUnchangedFiles="false" />
   </Target>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows_NT'">
     <Exec Command="if $(ConfigurationName) == Debug (&#xD;&#xA;  xcopy &quot;bin/Debug/*.*&quot; &quot;../../server/resources/altV-Boilerplate&quot; /F /Y&#xD;&#xA;  echo type: &quot;csharp&quot;, main: &quot;Server-Core.dll&quot; &gt; &quot;../../server/resources/altV-Boilerplate/resource.cfg&quot;&#xD;&#xA;)" />
   </Target>
 </Project>
