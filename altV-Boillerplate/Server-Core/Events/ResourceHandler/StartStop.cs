@@ -16,6 +16,8 @@ namespace altV_Boillerplate.Events.ResourceHandler
             catch (Exception ex)
             {
                 Alt.Log($"Could not connect to database, error: {ex.Message}");
+                Thread.Sleep(5000);
+                Environment.Exit(-1);
             }
         }
 
