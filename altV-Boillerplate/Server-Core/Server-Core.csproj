@@ -41,6 +41,14 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Declaration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj" />
+  </ItemGroup>
+
   <Target Name="CopyFiles" AfterTargets="publish">
     <PropertyGroup>
       <CopiedFiles>$(OutputPath)\publish\*.*</CopiedFiles>
