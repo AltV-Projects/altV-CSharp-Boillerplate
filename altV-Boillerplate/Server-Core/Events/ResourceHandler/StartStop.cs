@@ -1,4 +1,6 @@
 ﻿using AltV.Net;
+using AltV.Net.Elements.Entities;
+using altV_Boillerplate.Entities;
 
 namespace altV_Boillerplate.Events.ResourceHandler
 {
@@ -24,6 +26,12 @@ namespace altV_Boillerplate.Events.ResourceHandler
         public override void OnStop()
         {
             Alt.Log("Server is shooting down");
+        }
+
+
+        public override IEntityFactory<IPlayer> GetPlayerFactory()
+        {
+            return new XPlayerFactory();
         }
     }
 }
