@@ -1,4 +1,6 @@
 ﻿using AltV.Net;
+using AltV.Net.Elements.Entities;
+using altV_Boillerplate.Entities;
 
 namespace altV_Boillerplate.Events.ResourceHandler
 {
@@ -16,12 +18,20 @@ namespace altV_Boillerplate.Events.ResourceHandler
             catch (Exception ex)
             {
                 Alt.Log($"Could not connect to database, error: {ex.Message}");
+                Thread.Sleep(5000);
+                Environment.Exit(-1);
             }
         }
 
         public override void OnStop()
         {
             Alt.Log("Server is shooting down");
+        }
+
+
+        public override IEntityFactory<IPlayer> GetPlayerFactory()
+        {
+            return new XPlayerFactory();
         }
     }
 }

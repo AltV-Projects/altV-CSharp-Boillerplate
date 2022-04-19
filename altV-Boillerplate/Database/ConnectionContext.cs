@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Database.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-    class ConnectionContext : DbContext
+    public class ConnectionContext : DbContext
     {
+        public DbSet<User> User { get; set; } = default!;
         private string GetConnectionString()
         {
             Config SQLConfig = new Config();
