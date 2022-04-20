@@ -10,7 +10,6 @@ namespace altV_Boillerplate.Entities
         private readonly ConnectionContext databaseHandle;
         public int DBID { get; set; } = -1;
         public bool IsLoggedIn { get; set; }
-        private User _lastUser = new();
 
         public XPlayer(IntPtr nativePointer, ushort id) : base(Alt.Core, nativePointer, id)
         {
@@ -31,7 +30,6 @@ namespace altV_Boillerplate.Entities
                     user.HardwareIdExHash == this.HardwareIdExHash &&
                     user.HardwareIdHash == this.HardwareIdHash
                 ).FirstOrDefault();
-                this._lastUser = result;
                 return result != null;
             }
             catch (Exception ex)
@@ -64,7 +62,6 @@ namespace altV_Boillerplate.Entities
                 {
                     this.DBID = result.Id;
                     this.IsLoggedIn = true;
-                    this._lastUser = result;
                 }
             }
             catch (Exception ex)
@@ -95,7 +92,6 @@ namespace altV_Boillerplate.Entities
 
                 var result = this.databaseHandle.Add(userAccount);
                 this.databaseHandle.SaveChanges();
-                this._lastUser = userAccount;
                 return result != null;
             }
             catch (Exception ex)
