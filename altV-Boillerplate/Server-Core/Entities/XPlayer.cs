@@ -101,5 +101,25 @@ namespace altV_Boillerplate.Entities
             }
             return false;
         }
+
+        public void Save()
+        {
+            try
+            {
+                var userAccount = this.databaseHandle.User.Where(user => user.Id == this.DBID).FirstOrDefault();
+                if (userAccount == null) return;
+                userAccount.PosX = this.Position.X;
+                userAccount.PosY = this.Position.Y;
+                userAccount.PosZ = this.Position.Z;
+                userAccount.PosR = this.Rotation.Yaw;
+
+                this.databaseHandle.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Alt.Log(ex.Message);
+                Console.WriteLine(ex.InnerException);
+            }
+        }
     }
 }
