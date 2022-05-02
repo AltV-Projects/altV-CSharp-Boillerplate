@@ -26,6 +26,14 @@ namespace altV_Boillerplate.Events.ResourceHandler
         public override void OnStop()
         {
             Alt.Log("Server is shooting down");
+            foreach (XPlayer player in Alt.GetAllPlayers())
+            {
+                if (!player.Exists) continue;
+                if (!player.IsConnected) continue;
+                if (!player.IsLoggedIn) continue;
+
+                player.Save();
+            }
         }
 
 
