@@ -8,10 +8,7 @@ namespace altV_Boillerplate.Events.BuiltIn
         [ScriptEvent(ScriptEventType.PlayerDisconnect)]
         public void OnPlayerDisconnect(XPlayer player, string reason)
         {
-            if (!player.IsLoggedIn)
-            {
-                Alt.Log($"Could not save player {player.Name} because he isn't logged in.");
-            }
+            player.Save();
             Alt.Log($"Player {player.Name} disconnected to our server with reason: {reason}");
         }
     }
